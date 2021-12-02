@@ -28,7 +28,7 @@ public class DataType {
 
         // String 타입은 문자열을 저장하며 기본타입이 아닌 참조타입입니다.
         String s1 = "hey! ";
-        String s2 = "it is so \"easy\"!!";
+        String s2 = "it is  so \"easy\"!!";
         System.out.println(s1 + s2);
     }
 }
