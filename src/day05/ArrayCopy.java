@@ -20,6 +20,9 @@ public class ArrayCopy {
             pCopy[i] = pets[i];
         }
 
+        System.out.println("원본: " + Arrays.toString(pets));
+        System.out.println("사본: " + Arrays.toString(pCopy));
+
         pets[1] = "어흥이";
         pCopy[0] = "켁켁이";
 
