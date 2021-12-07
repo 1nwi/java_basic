@@ -10,16 +10,16 @@ public class OperationGame {
         Scanner sc = new Scanner(System.in);
         Random r = new Random();
 
-        System.out.println("~~~~~~ 재미있는 사칙연산 게임 ~~~~~~");
+        System.out.println("~~~~~~~~~ 재미있는 사칙연산 게임 ~~~~~~~~~");
         System.out.println("[즐겁게 문제를 푸시다가 지겨우면 0을 누르세요~]");
-        System.out.println("=======================================\n");
+        System.out.println("=======================================");
 
-        System.out.println("~~~~~ 난이도를 설정합니다! ~~~~~");
+        System.out.println("~~~~~~~~~~ 난이도를 설정합니다! ~~~~~~~~~~");
         System.out.println("[ 1. 상 (1~100) | 2. 중 (1~50) | 3. 하 (1~20) ]");
         System.out.print(">> ");
         int level = sc.nextInt();
 
-        int max;
+        int max = 0;
         if (level == 1) {
             max = 100;
             System.out.println("상 난이도로 설정 됩니다!! [ 1 ~ 100 ]");
