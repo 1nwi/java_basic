@@ -18,8 +18,5 @@ public class LoopQuiz01 {
                 System.out.print("-");
             }
         }
-
-
-
     }
 }
