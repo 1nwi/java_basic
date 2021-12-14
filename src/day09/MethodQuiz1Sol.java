@@ -2,7 +2,7 @@ package day09;
 
 import java.util.Arrays;
 
-public class MethodQuiz1 {
+public class MethodQuiz1Sol {
 
     static String[] foods = {"치킨", "파스타", "짬뽕"};
 
@@ -29,86 +29,75 @@ public class MethodQuiz1 {
     }
 
     // 삭제 메서드
-    static String remove(String targetFood) {
-        // 탐색
+    static void remove(String targetFood) {
 
-        // int idx = indexOf(targetFood);  위의 indexOF의 함수를 이용할수있음
-        int index = -1;
-        for (int i = 0; i <foods.length; i++) {
-            if (targetFood.equals(foods[i])) {
-                index = i;
-                break;
-            }
+        if (!include(targetFood)) {
+            System.out.println("대상이 존재하지 않아 삭제할 수 없습니다.");
+            return;
         }
+        // 삭제대상의 인덱스
+        int idx = indexOf(targetFood);
 
-        if (index != -1) {
-            // 삭제 알고리즘
-            for (int i = index; i < foods.length - 1; i++) {
-                foods[i] = foods[i + 1];
-            }
-
-            String[] temp = new String[foods.length - 1];
-            for (int i = 0; i < temp.length; i++) {
-                temp[i] = foods[i];
-            }
-            foods = temp; temp = null;
-        } else {
-            System.out.printf("%s는(은)존재하지 않는 음식명입니다.\n",targetFood);
+        for (int i = idx; i < foods.length -1; i++) {
+            foods[i] = foods[i + 1];
         }
-        return targetFood;
+        String[] temp = new String[foods.length - 1];
+        for (int i = 0; i < temp.length; i++) {
+            temp[i] = foods[i];
+        }
+        foods = temp;
     }
 
-    // 추가 메서드
-    static String insert(int insertIdx, String newFood) {
+    // 음식명을 입력하면 음식이 배열에 저장 되었는지 여부 확인
+    static boolean include(String checkFood) {
+        return indexOf(checkFood) != 1;
+    }
+
+    // 삽입 함수
+    static void insert(int insertIdx, String newFood) {
+
+        if (insertIdx < 0 || insertIdx > foods.length - 1) {
+            System.out.println("인덱스 범위가 잘못됨!");
+            return;
+        }
+
         String[] temp = new String[foods.length + 1];
 
-        // 2. 기존 데이터를 전부 복사
         for (int i = 0; i < foods.length; i++) {
             temp[i] = foods[i];
         }
-        // 3. 끝데이터부터 뒤로 밀기
+
         for (int i = temp.length - 1; i > insertIdx; i--) {
             temp[i] = temp[i - 1];
         }
-        // 4. 타겟인덱스에 데이터 추가
-        temp[insertIdx] = newFood;
-        // 5. 주소 변경
-        foods = temp; temp = null;
 
-        return newFood;
+        temp[insertIdx] = newFood;
+        foods = temp;
     }
-    // 수정 메서드
-    static String modify(int modifyIdx, String modifyFood) {
+
+    // 수정 함수
+    static void modify(int modifyIdx, String modifyFood) {
+        if (modifyIdx < 0 || modifyIdx > foods.length - 1) {
+            System.out.println("인덱스 범위가 잘못됨!");
+            return;
+        }
         foods[modifyIdx] = modifyFood;
-        return modifyFood;
     }
 
     // 배열의 모든 값 삭제 메서드
     static void clear() {
-        foods = null;
+        foods = new String[0];
     }
-
-    static boolean include(String checkFood) {
-        int index = -1;
-        for (int i = 0; i <foods.length; i++) {
-            if (checkFood.equals(foods[i])) {
-                index = i;
-                break;
-            }
-        }
-        return true;
-    }
-
 
 
     public static void main(String[] args) {
 
 
         push("볶음밥");
-        System.out.println(Arrays.toString(foods));
+        printArray(foods);
 
         push("라면");
-        System.out.println(Arrays.toString(foods));
+        printArray(foods);
 
         System.out.println("=========================");
 
@@ -133,7 +122,7 @@ public class MethodQuiz1 {
         System.out.println("==========================");
 
         insert(3, "파인애플"); // 3번 인덱스에 파인애플 삽입
-        System.out.println(Arrays.toString(foods));
+        printArray(foods);
 
         System.out.println("==========================");
 
@@ -151,5 +140,9 @@ public class MethodQuiz1 {
         System.out.println(Arrays.toString(foods));
 
 
+    }
+
+    private static void printArray(String[] arr) {
+        System.out.println(Arrays.toString(arr));
     }
 }
