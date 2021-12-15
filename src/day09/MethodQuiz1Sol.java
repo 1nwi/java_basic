@@ -37,10 +37,10 @@ public class MethodQuiz1Sol {
         }
         // 삭제대상의 인덱스
         int idx = indexOf(targetFood);
-
         for (int i = idx; i < foods.length -1; i++) {
             foods[i] = foods[i + 1];
         }
+
         String[] temp = new String[foods.length - 1];
         for (int i = 0; i < temp.length; i++) {
             temp[i] = foods[i];
@@ -60,17 +60,13 @@ public class MethodQuiz1Sol {
             System.out.println("인덱스 범위가 잘못됨!");
             return;
         }
-
         String[] temp = new String[foods.length + 1];
-
         for (int i = 0; i < foods.length; i++) {
             temp[i] = foods[i];
         }
-
         for (int i = temp.length - 1; i > insertIdx; i--) {
             temp[i] = temp[i - 1];
         }
-
         temp[insertIdx] = newFood;
         foods = temp;
     }
