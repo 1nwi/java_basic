@@ -18,6 +18,7 @@ public class projectV3 {
 
     static String[] loginUser = {}; // global 용
 
+    static String[] studentName = new String[] {"최","김","aa"};
     static int[] scoreKor = {100, 95, 80};
     static int[] scoreEng = {85, 90, 90};
     static int[] scoreMat = {90, 100, 70};
@@ -72,7 +73,8 @@ public class projectV3 {
         System.out.println("\t [[ 아이섹 초등학교 ]]");
         System.out.println("\t[[ 성적 관리 프로그램 ]]");
         System.out.println("==============================");
-        System.out.println("1. 학생성적 입력  | 2. 학생 성적 확인  |  3. 학생 성적 수정  |  4. 전체 학생 조회  |  5. 로그아웃  |  6. 종료");
+        System.out.println("1. 학생성적 입력\n2. 학생 성적 확인\n3. 학생 성적 수정\n4. 전체 학생 조회\n5. 로그아웃\n6. 종료");
+        System.out.println("==============================");
     }
 
     // 프로그램 로그인 이후 학생 메인
@@ -87,9 +89,9 @@ public class projectV3 {
     // 로그인 함수
     public static void UserLogin() {
         while (true) {
-            System.out.print("[* 아이디 : ]");
+            System.out.print("* 아이디 : ");
             String UserID = sc.next();
-            System.out.print("[* 비밀번호 : ]");
+            System.out.print("* 비밀번호 : ");
             String UserPW = sc.next();
             int log = 0;
             for (int i = 0; i < teacher.length; i++) {
@@ -393,11 +395,11 @@ public class projectV3 {
 
     // case4 전체 학생 점수 조회
     static void case4() {
-        if (student.length > 0) {
+        if (studentName.length > 0) {
             System.out.println("***** 모든 학생의 점수를 조회합니다 *****");
 
-            for (int i = 0; i < student.length; i++) {
-                System.out.printf("# %d, <%s>의점수\n국어 : %d점 | 영어 : %d점 | 수학 : %d점\n", i + 1, student[i], scoreKor[i], scoreEng[i], scoreMat[i]);
+            for (int i = 0; i < studentName.length; i++) {
+                System.out.printf("# %d, <%s>의점수\n국어 : %d점 | 영어 : %d점 | 수학 : %d점\n", i + 1, studentName[i], scoreKor[i], scoreEng[i], scoreMat[i]);
                 scoreTotal = scoreKor[i] + scoreEng[i] + scoreMat[i];
                 scoreAvg = (double) scoreTotal / 3;
                 System.out.printf("총점 : %d점 | 평균 : %.2f점\n", scoreTotal, scoreAvg);
@@ -411,12 +413,12 @@ public class projectV3 {
 
     // studentName 배열에 새로운 데이터를 끝에 추가하는 함수
     static void pushName(String newName) {
-        String[] temp = new String[student.length + 1];
-        for (int i = 0; i < student.length; i++) {
-            temp[i] = student[i];
+        String[] temp = new String[studentName.length + 1];
+        for (int i = 0; i < studentName.length; i++) {
+            temp[i] = studentName[i];
         }
         temp[temp.length - 1] = newName;
-        student = temp;
+        studentName = temp;
     }
 
     // 각 점수 배열에 새로운 데이터를 끝에 추가하는 함수 (int 만 가능)
@@ -432,8 +434,8 @@ public class projectV3 {
     // studentName 의 인덱스 번호를 찾는 함수
     static int indexOf(String targetStudent) {
         int index = -1;
-        for (int i = 0; i < student.length; i++) {
-            if (targetStudent.equals(student[i])) {
+        for (int i = 0; i < studentName.length; i++) {
+            if (targetStudent.equals(studentName[i])) {
                 index = i;
                 break;
             }
