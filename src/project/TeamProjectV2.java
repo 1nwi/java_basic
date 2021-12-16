@@ -22,8 +22,9 @@ public class TeamProjectV2 {
     static int[] scoreKor = new int[] {99,88,87,25};
     static int[] scoreEng = new int[] {88,66,58,99};
     static int[] scoreMat = new int[] {77,44,87,100};
-    static int[] scoreTotal = new int[] {264,198,232,224};
-    static double[] scoreAvg = new double[] {88.00,66.00,77.33,74.67};
+
+    static int scoreTotal;
+    static double scoreAvg;
 
     // studentName 배열에 새로운 데이터를 끝에 추가하는 함수
     static void pushName(String newName) {
@@ -43,16 +44,6 @@ public class TeamProjectV2 {
         }
         temp[temp.length - 1] = newScore;
         return temp;
-    }
-
-    // scoreAvg 배열에 새로운 데이터를 끝에 추가하는 함수
-    static void pushAvg(double avg) {
-        double[] temp = new double[scoreAvg.length + 1];
-        for (int i = 0; i < scoreAvg.length; i++) {
-            temp[i] = scoreAvg[i];
-        }
-        temp[temp.length - 1] = avg;
-        scoreAvg = temp;
     }
 
     // studentName 의 인덱스 번호를 찾는 함수
@@ -116,11 +107,9 @@ public class TeamProjectV2 {
                         System.out.printf("국어점수 : %d\n",scoreKor[index]);
                         System.out.printf("영어점수 : %d\n",scoreEng[index]);
                         System.out.printf("수학점수 : %d\n",scoreMat[index]);
-                        int total = scoreKor[index] + scoreEng[index] + scoreMat[index];
-                        scoreTotal = pushIntArray(scoreTotal, total);
-                        double avg = (double) scoreTotal[index] / 3;
-                        pushAvg(avg);
-                        System.out.printf("총점 : %d | 평균 : %.2f\n", scoreTotal[index], scoreAvg[index]);
+                        scoreTotal = scoreKor[index] + scoreEng[index] + scoreMat[index];
+                        scoreAvg = (double) scoreTotal / 3;
+                        System.out.printf("총점 : %d | 평균 : %.2f\n", scoreTotal, scoreAvg);
                     } else {
                         System.out.printf("%s은(는) 없는 이름입니다.\n",checkStudentScore);
                     }
