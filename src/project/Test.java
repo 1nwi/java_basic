@@ -3,12 +3,13 @@ package project;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class projectV3 {
+public class Test {
+
     static Scanner sc = new Scanner(System.in);
     // 임시 더미 자료들
-    static String[] teacherID = {"aa"};
-    static String[] teacherPW = {"bb"};
-    static String[] teacher = {"담임"};
+    static String[] teacherID = {"aa", "zz"};
+    static String[] teacherPW = {"bb", "xx"};
+    static String[] teacher = {"담임", "담임2"};
 
     static String[] studentID = {"a1", "b1", "c1"};
     static String[] studentPW = {"a1", "b1", "c1"};
@@ -36,12 +37,14 @@ public class projectV3 {
 
     // 프로그램 메인
     static void main() {
-        System.out.println(Arrays.toString(teacherID));
-        System.out.println(Arrays.toString(teacherPW));
-        System.out.println(Arrays.toString(teacher));
-        System.out.println(Arrays.toString(studentID));
-        System.out.println(Arrays.toString(studentPW));
-        System.out.println(Arrays.toString(student));
+
+//        System.out.println(Arrays.toString(teacherID));
+//        System.out.println(Arrays.toString(teacherPW));
+//        System.out.println(Arrays.toString(teacher));
+//        System.out.println(Arrays.toString(studentID));
+//        System.out.println(Arrays.toString(studentPW));
+//        System.out.println(Arrays.toString(student));
+
         while (true) {
             System.out.println("==============================");
             System.out.println("\t [[ 아이섹 초등학교 ]]");
@@ -89,9 +92,9 @@ public class projectV3 {
     // 로그인 함수
     public static void UserLogin() {
         while (true) {
-            System.out.print("* 아이디 : ");
+            System.out.print("[* 아이디 : ]");
             String UserID = sc.next();
-            System.out.print("* 비밀번호 : ");
+            System.out.print("[* 비밀번호 : ]");
             String UserPW = sc.next();
             int log = 0;
             for (int i = 0; i < teacher.length; i++) {
@@ -99,6 +102,12 @@ public class projectV3 {
                     log = i;
                     System.out.println(teacher[log] + "선생님이 로그인 하셨습니다.");
                     System.out.println(teacher[log] + "님 반갑습니다. (*´∀`*)");
+                    String[] temp = new String[loginUser.length + 1];
+                    for (int k = 0; k < loginUser.length; k++) {
+                        temp[k] = loginUser[k];
+                    }
+                    temp[temp.length - 1] = UserID;
+                    loginUser = temp;
                     teacherID = loginUser;
                     return;
                 }
@@ -108,6 +117,12 @@ public class projectV3 {
                     log = j;
                     System.out.println(student[log] + "학생이 로그인하였습니다.");
                     System.out.println(student[log] + "님 반갑습니다. (*´∀`*)");
+                    String[] temp = new String[loginUser.length + 1];
+                    for (int k = 0; k < loginUser.length; k++) {
+                        temp[k] = loginUser[k];
+                    }
+                    temp[temp.length - 1] = UserID;
+                    loginUser = temp;
                     studentID = loginUser;
                     return;
                 }
@@ -116,7 +131,7 @@ public class projectV3 {
         }
     }
 
-
+    /*
     // 로그아웃 함수
     static void UserLogout() {
         System.out.print("[* 아이디: ]");
@@ -127,19 +142,13 @@ public class projectV3 {
         for (int i = 0; i < idcnt; i++) {
             if (teacherID[i].equals(id) && teacherPW[i].equals(pw)) {
                 log = i;
+                clear();
                 System.out.println(teacher[log] + "님이 로그아웃 하셨습니다.(｡•́︿•̀｡) ");
-
-                String[] temp = new String[loginUser.length - 1];
-                for (int a = 0; a < loginUser.length; i--) {
-                    temp[i] = loginUser[i];
-                }
-                loginUser = temp;
             }
         }
         main();
     }
-
-
+    */
 
     // 회원가입 함수
     static void AddUser() {
@@ -153,7 +162,7 @@ public class projectV3 {
             teachinsertNAME(sc.next());
             main();
         }
-        if (!whois()) {
+        else if (!whois()) {
             System.out.print("ID를 입력해주세요 : ");
             studentinsertID(sc.next());
             System.out.print("PW를 입력해주세요 : ");
@@ -185,7 +194,6 @@ public class projectV3 {
                         return true;
                     case "2":
                         System.out.println("구라 치다 걸리면 알죠??");
-                        whois();
                 }
             } // if end
             else if (choice == 2) {
@@ -199,10 +207,9 @@ public class projectV3 {
                         return false;
                     case "2":
                         System.out.println("뭔데.. 도대체 누군데..");
-                        whois();
                 }
             } // if end
-            if (choice == 3) {
+            else if (choice == 3) {
                 main();
             } else {
                 System.out.println("버튼을 잘못 누르셨어요 ! \n어머 저도 실수로 종료를 눌렀네요 !");
@@ -211,15 +218,12 @@ public class projectV3 {
         } // while end
     } // whois end
 
-    // 현재 로그인한 사람
-    static void nowUser() {
-        String[] temp = new String[loginUser.length + 1];
-        for (int i = 0; i < loginUser.length; i++) {
-            temp[i] = loginUser[i];
-        }
-        loginUser = temp;
-    }
 
+    // 현재 로그인 유저 초기화 함수
+    static void clear() {
+        loginUser = new String[0];
+
+    }
 
     // 선생 ID 삽입 함수
     static void teachinsertID(String AddteacherID) {
@@ -278,7 +282,6 @@ public class projectV3 {
         }
         temp[temp.length - 1] = AddstudentID;
         studentID = temp;
-
     }
 
     // 학생 비번 삽입 함수
@@ -402,14 +405,13 @@ public class projectV3 {
                 System.out.printf("# %d, <%s>의점수\n국어 : %d점 | 영어 : %d점 | 수학 : %d점\n", i + 1, studentName[i], scoreKor[i], scoreEng[i], scoreMat[i]);
                 scoreTotal = scoreKor[i] + scoreEng[i] + scoreMat[i];
                 scoreAvg = (double) scoreTotal / 3;
-                System.out.printf("총점 : %d점 | 평균 : %.2f점\n", scoreTotal, scoreAvg);
+                System.out.printf("총점 : %d점 | 평균 : %.2f점\n\n", scoreTotal, scoreAvg);
 
             }
         } else {
             System.out.println("등록된 데이터가 없습니다.");
         }
     }
-
 
     // studentName 배열에 새로운 데이터를 끝에 추가하는 함수
     static void pushName(String newName) {
@@ -453,7 +455,6 @@ public class projectV3 {
         return iArr;
     }
 
-
     // 종료 함수
     static void exit() {
         System.out.println("프로그램을 종료하시겠습니까????? Y or N");
@@ -483,19 +484,8 @@ public class projectV3 {
         System.exit(0);
     }
 
-
     // ====================================================================================== //
     public static void main(String[] args) {
-
-        // 더미 배열 확인
-        /*
-        System.out.println(Arrays.toString(teacherID));
-        System.out.println(Arrays.toString(teacherPW));
-        System.out.println(Arrays.toString(teacher));
-        System.out.println(Arrays.toString(studentID));
-        System.out.println(Arrays.toString(studentPW));
-        System.out.println(Arrays.toString(student));
-         */
 
         main();
         if (loginUser == teacherID) {
@@ -513,7 +503,6 @@ public class projectV3 {
                 } else if (select == 4) {
                     case4();
                 } else if (select == 5) {
-                    System.out.println("님이 로그아웃 하셨습니다.(｡•́︿•̀｡) ");
                     main();
                 } else if (select == 6) {
                     exit();
@@ -524,7 +513,7 @@ public class projectV3 {
             } // while end
         } // if end
 
-        if (loginUser == studentID) {
+        else if (loginUser == studentID) {
             while (true) {
                 studentmain();
                 System.out.print("선택해주세요 >> ");
@@ -533,7 +522,7 @@ public class projectV3 {
                 if (select == 1) {
                     case2();
                 } else if (select == 2) {
-                    UserLogout();
+                    main();
                 } else if (select == 3) {
                     exit();
                 } else {
@@ -544,4 +533,3 @@ public class projectV3 {
 
     } // main end
 } // class end
-
