@@ -13,9 +13,7 @@ public class Product {
     }
 
     public void information() {
-        System.out.println(pName);
-        System.out.println(price);
-        System.out.println(brand);
+        System.out.printf("제품명 : %s, 가격 : %d원, 브랜드명 : %s\n", pName, price, brand);
     }
 
 }
