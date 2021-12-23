@@ -119,6 +119,15 @@ public class MemberMenu {
         }
     }
 
+    // 2번메뉴 처리
+
+    private void searchMember() {
+        System.out.println("# 1. 아이디로 검색하기");
+        System.out.println("# 2. 이름으로 검색하기");
+        System.out.println("# 9. 메인으로 돌아가기");
+    }
+
+
     // 5번메뉴 처리
     private void printAll() {
         Member[] members = mc.printAll();
