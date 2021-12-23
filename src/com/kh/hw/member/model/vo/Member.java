@@ -13,9 +13,8 @@ public class Member {
 
     // ========================= 생성자 영역 =========================//
     public String inform() {
-        return String.format("Id:%s / Name:%s / Password:%s / Email:%s / Gender:%s / Age:%d",id,name,password,email,gender,age);
+        return String.format("# Id:%s / Name:%s / Password:%s / Email:%s / Gender:%c / Age:%d",id,name,password,email,gender,age);
     }
-
 
     public Member() {
 
@@ -31,14 +30,17 @@ public class Member {
     }
 
 
-
     // ========================= 메서드 영역 =========================//
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        if (id.length() < 7 && id.length() > 4) {
+            this.id = id;
+        } else {
+            return;
+        }
     }
 
     public String getName() {
