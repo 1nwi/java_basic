@@ -3,6 +3,7 @@ package com.kh.hw.member.view;
 import com.kh.hw.member.controller.MemberController;
 import com.kh.hw.member.model.vo.Member;
 
+import java.util.IdentityHashMap;
 import java.util.Scanner;
 
 public class MemberMenu {
@@ -36,6 +37,7 @@ public class MemberMenu {
                     insertMember();
                     break;
                 case 2:
+                    searchMember();
                     break;
                 case 3:
                     break;
@@ -125,6 +127,7 @@ public class MemberMenu {
         System.out.println("# 1. 아이디로 검색하기");
         System.out.println("# 2. 이름으로 검색하기");
         System.out.println("# 9. 메인으로 돌아가기");
+        
     }
 
 
