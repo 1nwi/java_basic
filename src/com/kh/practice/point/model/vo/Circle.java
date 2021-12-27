@@ -21,9 +21,6 @@ public class Circle extends Point {
 
     @Override
     public String toString() {
-        super.toString();
-        return "Circle{" +
-                "radius=" + radius +
-                '}';
+        return super.toString()+" "+radius;
     }
 }

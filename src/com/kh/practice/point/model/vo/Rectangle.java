@@ -31,10 +31,6 @@ public class Rectangle extends Point {
 
     @Override
     public String toString() {
-        super.toString();
-        return "Rectangle{" +
-                "width=" + width +
-                ", height=" + height +
-                '}';
+        return super.toString()+" "+width+" "+height;
     }
 }
