@@ -6,6 +6,8 @@ import com.kh.practice.chap01_poly.model.vo.Member;
 
 import java.util.Scanner;
 
+import static com.kh.practice.chap01_poly.controller.LibraryController.*;
+
 public class LibraryMenu {
 
     private LibraryController lc = new LibraryController();
@@ -55,16 +57,22 @@ public class LibraryMenu {
     }
 
     private void rentBook() {
+        System.out.println("\n=========== 대여 도서 목록 ================");
         selectAll();
+
         System.out.printf("대여할 도서 번호 선택: ");
-        int index = sc.nextInt();
-        int idx = lc.rentBook(index);
-        switch (idx) {
-            case LibraryController.RENT_SUCCESS:
-                System.out.println("대여 성공!");
+        int bookNo = sc.nextInt();
+
+        int result = lc.rentBook(bookNo - 1);
+        switch (result) {
+            case RENT_SUCCESS:
+                System.out.println("# 성공적으로 대여 되었습니다.");
                 break;
-            case LibraryController.RENT_SUCCESS_WITH_COUPON:
-                System.out.println("대여 성공! 쿠폰 발급!");
+            case RENT_SUCCESS_WITH_COUPON:
+                System.out.println("# 성공적으로 대여 되었습니다. 요리학원 쿠폰이 팔급 되었으니 마이페이지에서 확인하세요.");
+                break;
+            case RENT_FAIL:
+                System.out.println("# 나이 제한으로 대여할 수 없습니다.");
                 break;
             default:
                 System.out.println("대여 실패!");
@@ -75,9 +83,16 @@ public class LibraryMenu {
     private void searchBook() {
         System.out.printf("검색할 제목 키워드: ");
         String keyword = sc.next();
-        Book[] searchBook = lc.searchBook(keyword);
-        for (Book b : searchBook) {
-            System.out.println(b.toString());
+
+        Book[] books = lc.searchBook(keyword);
+
+        if (books.length == 0) {
+            System.out.println("# 검색된 도서가 없습니다.");
+        } else {
+            System.out.printf("\n======== 검색 결과(검색어: %s) =========\n", keyword);
+            for (Book b : books) {
+                System.out.println(b.toString());
+            }
         }
     }
 
