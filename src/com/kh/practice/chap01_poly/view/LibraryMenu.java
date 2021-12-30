@@ -45,8 +45,10 @@ public class LibraryMenu {
                     break;
                 case 3:
                     searchBook();
+                    break;
                 case 4:
                     rentBook();
+                    break;
                 case 9:
                     System.out.println("프로그램을 종료합니다.");
                     System.exit(0);
@@ -77,7 +79,6 @@ public class LibraryMenu {
             default:
                 System.out.println("대여 실패!");
         }
-        System.out.println(lc.toString());
     }
 
     private void searchBook() {
