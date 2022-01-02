@@ -10,15 +10,17 @@ public class RectangleController {
         r.setY(y);
         r.setHeight(height);
         r.setWidth(width);
-        int calc = height * width;
+        double calc = height * width;
 
-        return null;
+        return r.toString()+" / "+calc;
     }
-    public void calcPerimeter(int x, int y, int height, int width) {
+    public String calcPerimeter(int x, int y, int height, int width) {
         r.setX(x);
         r.setY(y);
         r.setHeight(height);
         r.setWidth(width);
+        double peri = 2 * (width + height);
+        return r.toString()+" / "+peri;
 
     }
 
