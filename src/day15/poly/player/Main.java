@@ -15,7 +15,7 @@ public class Main {
 
         m.blizzard();
 
-        m.blizzard(w, h);
+        m.blizzard(w, h, m , new Mage("불꽃마법사"));
 
         /*
         =============================

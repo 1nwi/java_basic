@@ -12,6 +12,6 @@ public abstract class SmartPhone implements CellPhone, TouchDisplay {
         this.maker = maker;
     }
     public String getMaker() {
-        return maker;
+        return this.maker;
     }
 }
