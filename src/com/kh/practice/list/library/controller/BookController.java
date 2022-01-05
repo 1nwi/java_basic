@@ -7,7 +7,7 @@ import java.util.List;
 
 public class BookController {
 
-    private ArrayList bookList = new ArrayList<>();
+    private List<Book> bookList = new ArrayList<>();
 
 
     public BookController() {
@@ -21,21 +21,38 @@ public class BookController {
         bookList.add(bk);
     }
 
-    public ArrayList selectList() {
-        return bookList;
+    public ArrayList<Book> selectList() {
+        return (ArrayList<Book>) bookList;
     }
 
-    public ArrayList searchBook(String keyword) {
-        ArrayList searchList = new ArrayList();
-
+    public ArrayList<Book> searchBook(String keyword) {
+        // 검색결과 리스트 생성
+        ArrayList<Book> searchList = new ArrayList<>();
+        for (Book book : bookList) {
+            // 책제목
+            String title = book.getTitle();
+            if (title.contains(keyword)) {
+                searchList.add(book);
+            }
+        }
         return searchList;
     }
 
     public Book deleteBook(String title, String author) {
-        return null;
+        // 삭제될 도서를 담을 변수
+        Book removeBook = null;
+        for (Book book : bookList) {
+            if (book.getTitle().equals(title) && book.getAuthor().equals(author)) {
+                removeBook = book;
+                bookList.remove(book);
+                break;
+            }
+        }
+        return removeBook;
     }
 
     public int ascBook() {
-        return 1;
+        bookList.sort(Book::compareTo);
+        return 0;
     }
 }

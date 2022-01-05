@@ -1,6 +1,9 @@
 package com.kh.practice.list.library.model.vo;
 
-public class Book {
+import java.util.Objects;
+
+// Comparable 인터페이스를 구현하면 비교 기준을 만들 수 있음.
+public class Book implements Comparable<Book> {
     private String title;
     private String author;
     private String category;
@@ -58,15 +61,34 @@ public class Book {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return price == book.price && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(category, book.category);
+    }
+
+    @Override
     public int hashCode() {
-        return 0;
+        return Objects.hash(title, author, category, price);
     }
 
-    public boolean equals() {
-        return true;
-    }
+    // 정렬기준 메서드
+    // this(앞에거)가 args(뒤에거)가 같으면 0
+    // this가 크면 양수, 작으면 음수
+    @Override
+    public int compareTo(Book b) {
+        // 제목비교
+        // 비교대상1
+        String t1 = this.title;
+        // 비교대상2
+        String t2 = b.title;
 
-    public int compareTo() {
-        return 0;
+        // compareTo
+        if (t1.equals(t2)) return 0;
+        else if (t1.compareTo(t2) >= 1) return 1;
+        else return -1;
+
     }
 }
