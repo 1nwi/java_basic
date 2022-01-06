@@ -2,7 +2,7 @@ package com.kh.practice.list.music.model.vo;
 
 import java.util.Objects;
 
-public class Music {
+public class Music implements Comparable<Music> {
 
     private String title;
     private String singer;
@@ -32,11 +32,6 @@ public class Music {
     }
 
     @Override
-    public String toString() {
-        return "[" + singer + " - " + title +"]";
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -49,7 +44,16 @@ public class Music {
         return Objects.hash(title, singer);
     }
 
-    public int compareTo(Object o) {
-        return 1;
+    @Override
+    public String toString() {
+        return "Music{" +
+                "title='" + title + '\'' +
+                ", singer='" + singer + '\'' +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Music m) {
+        return 0;
     }
 }
